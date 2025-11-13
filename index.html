@@ -1,16 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop A1 Fidgets</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A1 Fidgets - Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
+        .fade-visible { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
-<body>
-  <d1>
-    <h1>Welcome to Shop A1 Fidgets!</h1>
-    <p>Your one-stop shop for all things fidgety.</p>
+<body class="bg-white text-gray-900 font-sans transition-colors duration-500" id="siteBody">
 
-    <p>Currently we are setting up our site! This is a sample by Owen Lee</p>
-  </d1>
+    <!-- Light/Dark Toggle -->
+    <button onclick="toggleTheme()" class="fixed bottom-6 right-6 z-50 bg-gray-900 text-white px-4 py-2 rounded-xl shadow-xl hover:bg-black transition">
+        Light to Dark
+    </button>
+
+    <!-- Header -->
+    <header class="w-full py-4 px-6 border-b border-gray-300 flex justify-between items-center bg-white sticky top-0 z-50 transition-colors duration-500" id="header">
+        <h1 class="text-2xl font-bold">A1 Fidgets</h1>
+        <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy Shop</a>
+    </header>
+
+    <!-- Hero -->
+    <section class="text-center py-28 border-b border-gray-300 bg-gray-100 transition-colors duration-500 fade-section">
+        <h2 class="text-5xl font-bold mb-4">A1 Fidgets</h2>
+        <p class="text-lg text-gray-600 max-w-xl mx-auto">Hello, my name is Owen Lee and I created A1 Fidgets! (plz buy to help me get a new 3d printer🙏🙏)</p>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop" class="py-20 px-6 fade-section">
+        <h3 class="text-3xl font-bold mb-12 text-center">Shop Items</h3>
+
+        <div class="flex flex-col gap-12 max-w-3xl mx-auto">
+
+            <!-- Real Items -->
+            <div class='border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section'>
+                <img src='images/IMG_1765-removebg-preview.png' class='rounded-xl mb-4 w-full' />
+                <h4 class='text-xl font-semibold'>3-Key Fidget Switch</h4>
+                <p class='text-gray-600 text-sm mb-3'>Triple‑key tactile fidget block. (Tan)</p>
+                <button onclick="window.location.href='https://www.etsy.com/people/7ew9ux50u1vo96cl'" class='w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition'>View on Etsy</button>
+            </div>
+
+            <div class='border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section'>
+                <img src='images/IMG_1764-removebg-preview.png' class='rounded-xl mb-4 w-full' />
+                <h4 class='text-xl font-semibold'>Single Red Fidget Key</h4>
+                <p class='text-gray-600 text-sm mb-3'>Compact single‑key fidget. (Red)</p>
+                <button onclick="window.location.href='https://www.etsy.com/people/7ew9ux50u1vo96cl'" class='w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition'>View on Etsy</button>
+            </div>
+
+            <div class='border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section'>
+                <img src='images/IMG_1763-removebg-preview.png' class='rounded-xl mb-4 w-full' />
+                <h4 class='text-xl font-semibold'>Single Yellow Fidget Key</h4>
+                <p class='text-gray-600 text-sm mb-3'>Simple single‑key tactile cube. (tan)</p>
+                <button onclick="window.location.href='https://www.etsy.com/people/7ew9ux50u1vo96cl'" class='w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition'>View on Etsy</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extra Scroll Space -->
+    <section class="h-[1400px] bg-gray-100 flex items-center justify-center text-gray-500 text-xl border-t border-gray-300 fade-section">
+        More coming soon🤫...
+    </section>
+
+    <footer class="text-center py-8 text-gray-500 border-t border-gray-300 fade-section">© 2025 A1 Fidgets</footer>
+
+<script>
+    // Enhanced bidirectional fade observer with optional staggered effect
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add fade-visible with stagger for child elements if any
+                entry.target.classList.add('fade-visible');
+                
+                // Optional stagger for nested elements
+                const children = entry.target.querySelectorAll('.fade-section');
+                children.forEach((child, index) => {
+                    setTimeout(() => {
+                        child.classList.add('fade-visible');
+                    }, index * 150); // 150ms delay per item
+                });
+
+            } else {
+                // Remove class when scrolling away (up or down)
+                entry.target.classList.remove('fade-visible');
+
+                const children = entry.target.querySelectorAll('.fade-section');
+                children.forEach(child => child.classList.remove('fade-visible'));
+            }
+        });
+    }, { threshold: 0.2 });
+
+    // Observe all sections and items
+    document.querySelectorAll('.fade-section').forEach(sec => observer.observe(sec));
+</script>
+
 </body>
 </html>
