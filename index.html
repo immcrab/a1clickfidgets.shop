@@ -64,6 +64,46 @@
         More coming soon🤫...
     </section>
 
+    <!-- Video Section -->
+<section id="videos" class="py-20 px-6 fade-section">
+    <h3 class="text-3xl font-bold mb-12 text-center">Watch Videos</h3>
+
+    <div class="flex flex-col gap-12 max-w-3xl mx-auto">
+
+        <!-- Single Video -->
+        <div class="border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section">
+            <div class="relative">
+                <video id="video1" class="w-full rounded-xl" src="videos/single.mov" type="video/mp4"></video>
+                
+                <!-- Custom Controls -->
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-white/50 rounded-lg p-2">
+                    <button onclick="togglePlay('video1')" class="text-blue-600 font-bold">Play/Pause</button>
+                    <input type="range" id="volume1" min="0" max="1" step="0.05" value="1" class="w-1/2" 
+                        oninput="setVolume('video1', this.value)">
+                </div>
+            </div>
+            <h4 class="text-xl font-semibold mt-4">Single Clicker (counts as both red and tan)</h4>
+        </div>
+
+        <!-- Second Video -->
+        <div class="border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section">
+            <div class="relative">
+                <video id="video3" class="w-full rounded-xl" src="videos/tri.mov" type="video/mp4"></video>
+                
+                <!-- Custom Controls -->
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-white/50 rounded-lg p-2">
+                    <button onclick="togglePlay('video3')" class="text-blue-600 font-bold">Play/Pause</button>
+                    <input type="range" id="volume3" min="0" max="1" step="0.05" value="1" class="w-1/2" 
+                        oninput="setVolume('video3', this.value)">
+                </div>
+            </div>
+            <h4 class="text-xl font-semibold mt-4">Triple Clicker </h4>
+        </div>
+
+    </div>
+</section>
+
+
     <footer class="text-center py-8 text-gray-500 border-t border-gray-300 fade-section">© 2025 A1 Fidgets</footer>
 
 <script>
@@ -94,6 +134,24 @@
 
     // Observe all sections and items
     document.querySelectorAll('.fade-section').forEach(sec => observer.observe(sec));
+
+    // Prevent right-click context menu on videos
+    document.querySelectorAll('video').forEach(v => {
+        v.addEventListener('contextmenu', e => e.preventDefault());
+    });
+
+    // Play/Pause toggle
+    function togglePlay(videoId) {
+        const video = document.getElementById(videoId);
+        if(video.paused) video.play();
+        else video.pause();
+    }
+
+    // Set volume
+    function setVolume(videoId, value) {
+        const video = document.getElementById(videoId);
+        video.volume = value;
+    }
 </script>
 
 </body>
