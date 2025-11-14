@@ -9,7 +9,6 @@
         .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
         .fade-visible { opacity: 1; transform: translateY(0); }
     </style>
-
     <link rel="icon" type="image/png" href="images/icon.jpg" />
 </head>
 <body class="bg-white text-gray-900 font-sans transition-colors duration-500" id="siteBody">
@@ -19,25 +18,33 @@
         Light to Dark
     </button>
 
-    <!-- Header -->
+    <!-- Header / Nav -->
     <header class="w-full py-4 px-6 border-b border-gray-300 flex justify-between items-center bg-white sticky top-0 z-50 transition-colors duration-500" id="header">
         <h1 class="text-2xl font-bold">A1 Fidgets</h1>
-        <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy Shop</a>
+        
+        <!-- Nav Menu -->
+        <nav class="flex gap-4 items-center">
+            <a href="index.html" class="text-blue-600 hover:underline font-semibold">Shop</a>
+            <a href="about.html" class="text-blue-600 hover:underline">About</a>
+            <a href="#videos" class="text-blue-600 hover:underline">Videos</a>
+            <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
+            
+            <!-- Etsy Button -->
+            <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy</a>
+        </nav>
     </header>
 
     <!-- Hero -->
     <section class="text-center py-28 border-b border-gray-300 bg-gray-100 transition-colors duration-500 fade-section">
         <h2 class="text-5xl font-bold mb-4">A1 Fidgets</h2>
-        <p class="text-lg text-gray-600 max-w-xl mx-auto">Hello, my name is Owen Lee and I created A1 Fidgets! (plz buy to help me get a new 3d printer🙏🙏)</p>
+        <p class="text-lg text-gray-600 max-w-xl mx-auto">Hello, my name is Owen Lee and I created A1 Fidgets! (plz buy to help me get a new 3D printer🙏🙏)</p>
     </section>
 
     <!-- Shop Section -->
     <section id="shop" class="py-20 px-6 fade-section">
         <h3 class="text-3xl font-bold mb-12 text-center">Shop Items</h3>
-
         <div class="flex flex-col gap-12 max-w-3xl mx-auto">
 
-            <!-- Real Items -->
             <div class='border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section'>
                 <img src='images/IMG_1765-removebg-preview.png' class='rounded-xl mb-4 w-full' />
                 <h4 class='text-xl font-semibold'>3-Key Fidget Switch</h4>
@@ -55,7 +62,7 @@
             <div class='border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section'>
                 <img src='images/IMG_1763-removebg-preview.png' class='rounded-xl mb-4 w-full' />
                 <h4 class='text-xl font-semibold'>Single Yellow Fidget Key</h4>
-                <p class='text-gray-600 text-sm mb-3'>Simple single‑key tactile cube. (tan)</p>
+                <p class='text-gray-600 text-sm mb-3'>Simple single‑key tactile cube. (Tan)</p>
                 <button onclick="window.location.href='https://www.etsy.com/people/7ew9ux50u1vo96cl'" class='w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition'>View on Etsy</button>
             </div>
         </div>
@@ -67,46 +74,34 @@
     </section>
 
     <!-- Video Section -->
-<section id="videos" class="py-20 px-6 fade-section">
-    <h3 class="text-3xl font-bold mb-12 text-center">Watch Videos</h3>
+    <section id="videos" class="py-20 px-6 fade-section">
+        <h3 class="text-3xl font-bold mb-12 text-center">Watch Videos</h3>
+        <div class="flex flex-col gap-12 max-w-3xl mx-auto">
 
-    <div class="flex flex-col gap-12 max-w-3xl mx-auto">
-
-        <!-- Single Video -->
-        <div class="border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section">
-            <div class="relative">
-                <video id="video1" class="w-full rounded-xl" src="videos/single.mov" type="video/mp4"></video>
-                
-                <!-- Custom Controls -->
-                <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-white/50 rounded-lg p-2">
-                    <button onclick="togglePlay('video1')" class="text-blue-600 font-bold">Play/Pause</button>
-                    <input type="range" id="volume1" min="0" max="1" step="0.05" value="1" class="w-1/2" 
-                        oninput="setVolume('video1', this.value)">
+            <div class="border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section">
+                <div class="relative">
+                    <video id="video1" class="w-full rounded-xl" src="videos/single.mov" type="video/mp4"></video>
+                    <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-white/50 rounded-lg p-2">
+                        <button onclick="togglePlay('video1')" class="text-blue-600 font-bold">Play/Pause</button>
+                        <input type="range" id="volume1" min="0" max="1" step="0.05" value="1" class="w-1/2" oninput="setVolume('video1', this.value)">
+                    </div>
                 </div>
+                <h4 class="text-xl font-semibold mt-4">Single Clicker (counts as both red and tan)</h4>
             </div>
-            <h4 class="text-xl font-semibold mt-4">Single Clicker (counts as both red and tan)</h4>
-        </div>
 
-        <!-- Second Video -->
-        <div class="border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section">
-            <div class="relative">
-                <video id="video3" class="w-full rounded-xl" src="videos/tri.mov" type="video/mp4"></video>
-                
-                <!-- Custom Controls -->
-                <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-white/50 rounded-lg p-2">
-                    <button onclick="togglePlay('video3')" class="text-blue-600 font-bold">Play/Pause</button>
-                    <input type="range" id="volume3" min="0" max="1" step="0.05" value="1" class="w-1/2" 
-                        oninput="setVolume('video3', this.value)">
+            <div class="border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section">
+                <div class="relative">
+                    <video id="video3" class="w-full rounded-xl" src="videos/tri.mov" type="video/mp4"></video>
+                    <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-white/50 rounded-lg p-2">
+                        <button onclick="togglePlay('video3')" class="text-blue-600 font-bold">Play/Pause</button>
+                        <input type="range" id="volume3" min="0" max="1" step="0.05" value="1" class="w-1/2" oninput="setVolume('video3', this.value)">
+                    </div>
                 </div>
+                <h4 class="text-xl font-semibold mt-4">Triple Clicker</h4>
             </div>
-            <h4 class="text-xl font-semibold mt-4">Triple Clicker </h4>
+
         </div>
-
-    </div>
-</section>
-
-    ...
-    </section> <!-- End of Video Section -->
+    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 px-6 fade-section">
@@ -114,62 +109,53 @@
         <p class="text-center text-gray-700 text-lg max-w-xl mx-auto">
             Have questions or just want to say hi? Reach out via email:
         </p>
-        <p class="text-center mt-4 text-blue-600 font-semibold">
-            <a href="mailto:imcrabfr@gmail.com">imcrabfr@gmail.com</a>
+        <p class="text-center mt-4">
+            <a href="mailto:imcrabfr@gmail.com" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">
+                imcrabfr@gmail.com
+            </a>
         </p>
     </section>
 
     <footer class="text-center py-8 text-gray-500 border-t border-gray-300 fade-section">© 2025 A1 Fidgets</footer>
 
-
-    <footer class="text-center py-8 text-gray-500 border-t border-gray-300 fade-section">© 2025 A1 Fidgets</footer>
-
 <script>
-    // Enhanced bidirectional fade observer with optional staggered effect
+    // Fade-in observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Add fade-visible with stagger for child elements if any
                 entry.target.classList.add('fade-visible');
-                
-                // Optional stagger for nested elements
                 const children = entry.target.querySelectorAll('.fade-section');
-                children.forEach((child, index) => {
-                    setTimeout(() => {
-                        child.classList.add('fade-visible');
-                    }, index * 150); // 150ms delay per item
-                });
-
+                children.forEach((child, index) => setTimeout(() => child.classList.add('fade-visible'), index * 150));
             } else {
-                // Remove class when scrolling away (up or down)
                 entry.target.classList.remove('fade-visible');
-
                 const children = entry.target.querySelectorAll('.fade-section');
                 children.forEach(child => child.classList.remove('fade-visible'));
             }
         });
     }, { threshold: 0.2 });
 
-    // Observe all sections and items
     document.querySelectorAll('.fade-section').forEach(sec => observer.observe(sec));
 
-    // Prevent right-click context menu on videos
-    document.querySelectorAll('video').forEach(v => {
-        v.addEventListener('contextmenu', e => e.preventDefault());
-    });
+    // Light/Dark Toggle
+    function toggleTheme() {
+        document.body.classList.toggle('bg-white');
+        document.body.classList.toggle('text-gray-900');
+        document.body.classList.toggle('bg-gray-900');
+        document.body.classList.toggle('text-white');
+    }
 
-    // Play/Pause toggle
+    // Video controls
     function togglePlay(videoId) {
         const video = document.getElementById(videoId);
         if(video.paused) video.play();
         else video.pause();
     }
-
-    // Set volume
     function setVolume(videoId, value) {
-        const video = document.getElementById(videoId);
-        video.volume = value;
+        document.getElementById(videoId).volume = value;
     }
+
+    // Prevent right-click on videos
+    document.querySelectorAll('video').forEach(v => v.addEventListener('contextmenu', e => e.preventDefault()));
 </script>
 
 </body>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A1 Fidgets - About</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
+        .fade-visible { opacity: 1; transform: translateY(0); }
+    </style>
+    <link rel="icon" type="image/png" href="images/icon.jpg" />
+</head>
+<body class="bg-white text-gray-900 font-sans transition-colors duration-500" id="siteBody">
+
+    <!-- Light/Dark Toggle -->
+    <button onclick="toggleTheme()" class="fixed bottom-6 right-6 z-50 bg-gray-900 text-white px-4 py-2 rounded-xl shadow-xl hover:bg-black transition">
+        Light to Dark
+    </button>
+
+    <!-- Header -->
+    <header class="w-full py-4 px-6 border-b border-gray-300 flex justify-between items-center bg-white sticky top-0 z-50 transition-colors duration-500" id="header">
+        <h1 class="text-2xl font-bold">A1 Fidgets</h1>
+        <nav class="flex gap-4">
+            <a href="index.html" class="text-blue-600 hover:underline">Shop</a>
+            <a href="about.html" class="text-blue-600 hover:underline font-semibold">About</a>
+            <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="text-center py-28 border-b border-gray-300 bg-gray-100 transition-colors duration-500 fade-section">
+        <h2 class="text-5xl font-bold mb-4">About A1 Fidgets</h2>
+        <p class="text-lg text-gray-600 max-w-xl mx-auto">
+            WELCOME!!! My name is Owen Lee, and I am the creator of A1 Fidgets. I started this a few days ago. The current date is 11/13/25. I make fidgets to help fund a new 3D printer because my current one is trash and I want to make better fidgets! Please consider buying my fidgets on my Etsy shop to help me reach my goal of getting a new 3D printer! Thank you so much for your support!🙏🙏
+        </p>
+    </section>
+
+    <!-- Story Section -->
+    <section class="py-20 px-6 fade-section">
+        <h3 class="text-3xl font-bold mb-8 text-center">My Story</h3>
+        <p class="max-w-3xl mx-auto text-gray-700 text-lg mb-6">
+            I kind of just started this because you know I felt like it and I didn't have anything else to do. A lot of people at my school like the stuff that I have made, so they want to buy it. That's why I'm starting to mass produce it. 
+        </p>
+        <p class="max-w-3xl mx-auto text-gray-700 text-lg mb-6">
+            I kinda just like to do this. It's kinda fun. My dog likes to watch the 3D printer in action, so do my cats. My dog's name is Mabel, if you were wondering. My cat's name is Oscar. And the other one is named Walker. 
+        </p>
+        <p class="max-w-3xl mx-auto text-gray-700 text-lg">
+            Currently, my Etsy shop is not up because I am under the age of 18, so I have to have my parents set it up for me. Once that is done, I will be able to start selling my fidgets!
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 fade-section">
+        <h3 class="text-3xl font-bold mb-8 text-center">Contact Me</h3>
+        <p class="text-center text-gray-700 text-lg max-w-xl mx-auto">
+            Have questions or want to collaborate? Reach out via email:
+        </p>
+        <p class="text-center mt-4">
+            <a href="mailto:imcrabfr@gmail.com" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">
+                imcrabfr@gmail.com
+            </a>
+        </p>
+    </section>
+
+    <footer class="text-center py-8 text-gray-500 border-t border-gray-300 fade-section">© 2025 A1 Fidgets</footer>
+
+<script>
+    // Fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-visible');
+                const children = entry.target.querySelectorAll('.fade-section');
+                children.forEach((child, index) => setTimeout(() => child.classList.add('fade-visible'), index * 150));
+            } else {
+                entry.target.classList.remove('fade-visible');
+                const children = entry.target.querySelectorAll('.fade-section');
+                children.forEach(child => child.classList.remove('fade-visible'));
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.fade-section').forEach(sec => observer.observe(sec));
+
+    // Light/Dark Toggle
+    function toggleTheme() {
+        document.body.classList.toggle('bg-white');
+        document.body.classList.toggle('text-gray-900');
+        document.body.classList.toggle('bg-gray-900');
+        document.body.classList.toggle('text-white');
+    }
+</script>
+
+</body>
+</html>
