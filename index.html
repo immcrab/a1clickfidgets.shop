@@ -8,6 +8,22 @@
     <style>
         .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
         .fade-visible { opacity: 1; transform: translateY(0); }
+        .typing-text {
+            overflow: visible;
+            border-right: 3px solid;
+            white-space: nowrap;
+            display: inline-block;
+            padding-right: 8px;
+            animation: typing 3s steps(11, end), blink 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 11ch; }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: currentColor; }
+        }
     </style>
     <link rel="icon" type="image/png" href="images/icon.jpg" />
     
@@ -34,6 +50,7 @@
         <a href="about.html" class="text-blue-600 hover:underline">About</a>
         <a href="#videos" class="text-blue-600 hover:underline">Videos</a>
         <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
+        <a href="policy.html" class="text-blue-600 hover:underline">Policy</a>
         
         <!-- Etsy Button -->
         <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy</a>
@@ -43,7 +60,7 @@
 
     <!-- Hero -->
     <section class="text-center py-28 border-b border-gray-300 bg-gray-100 transition-colors duration-500 fade-section">
-        <h2 class="text-5xl font-bold mb-4">A1 Fidgets</h2>
+        <h2 class="text-5xl font-bold mb-4"><span class="typing-text">A1 Fidgets</span></h2>
         <p class="text-lg text-gray-600 max-w-xl mx-auto">Hello, my name is Owen Lee and I created A1 Fidgets! (plz buy to help me get a new 3D printer🙏🙏)</p>
     </section>
 
