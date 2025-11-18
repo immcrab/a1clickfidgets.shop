@@ -8,6 +8,7 @@
     <style>
         .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
         .fade-visible { opacity: 1; transform: translateY(0); }
+        .active-nav { font-weight: 700; color: #1e40af; }
     </style>
     <link rel="icon" type="image/png" href="images/icon.jpg" />
 </head>
@@ -35,6 +36,7 @@
     <!-- Navigation -->
     <nav class="flex gap-4 items-center">
         <a href="index.html" class="text-blue-600 hover:underline">Shop</a>
+        <a href="shop/shop.html" class="text-blue-600 hover:underline">Shop Grid</a>
         <a href="about.html" class="text-blue-600 hover:underline font-semibold">About</a>
         <a href="index.html#videos" class="text-blue-600 hover:underline">Videos</a>
         <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
@@ -109,6 +111,19 @@
         document.body.classList.toggle('bg-gray-900');
         document.body.classList.toggle('text-white');
     }
+</script>
+
+<!-- Active nav marker script -->
+<script>
+    (function(){
+        const links = document.querySelectorAll('nav a[href]');
+        const loc = window.location.pathname.split('/').pop() || 'index.html';
+        links.forEach(a=>{
+            const href = (a.getAttribute('href')||'').split('#')[0];
+            const file = href.split('/').pop();
+            if(file === loc || (href === '' && loc === 'index.html')) a.classList.add('active-nav');
+        });
+    })();
 </script>
 
 </body>

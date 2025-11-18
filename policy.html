@@ -8,6 +8,7 @@
     <style>
         .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
         .fade-visible { opacity: 1; transform: translateY(0); }
+            .active-nav { font-weight: 700; color: #1e40af; }
     </style>
     <link rel="icon" type="image/png" href="images/icon.jpg" />
 </head>
@@ -29,6 +30,7 @@
         <!-- Nav Menu -->
         <nav class="flex gap-4 items-center">
             <a href="index.html" class="text-blue-600 hover:underline">Shop</a>
+            <a href="shop/shop.html" class="text-blue-600 hover:underline">Shop Grid</a>
             <a href="about.html" class="text-blue-600 hover:underline">About</a>
             <a href="index.html#videos" class="text-blue-600 hover:underline">Videos</a>
             <a href="index.html#contact" class="text-blue-600 hover:underline">Contact</a>
@@ -52,34 +54,8 @@
             <div class="mb-12 fade-section">
                 <h3 class="text-2xl font-bold mb-4">Introduction</h3>
                 <p class="text-gray-700 mb-4">
-                    Welcome to A1 Fidgets. We are committed to protecting your privacy and ensuring you have a positive experience on our website. This privacy policy outlines how we collect, use, and protect your information.
+                    At A1 Fridgets, we are wanting to protect your privacy. This is the privacy policy, and it really just tells you about what we are trying to do and protect.
                 </p>
-            </div>
-
-            <div class="mb-12 fade-section">
-                <h3 class="text-2xl font-bold mb-4">Information We Collect</h3>
-                <p class="text-gray-700 mb-4">
-                    We may collect information from you when you:
-                </p>
-                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
-                    <li>Visit our website</li>
-                    <li>Contact us via email</li>
-                    <li>Visit our Etsy shop</li>
-                    <li>Browse our product videos and information</li>
-                </ul>
-            </div>
-
-            <div class="mb-12 fade-section">
-                <h3 class="text-2xl font-bold mb-4">How We Use Your Information</h3>
-                <p class="text-gray-700 mb-4">
-                    Any information you provide to us is used solely for the purpose of:
-                </p>
-                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
-                    <li>Responding to your inquiries and questions</li>
-                    <li>Improving our website and service quality</li>
-                    <li>Providing you with updates about our products</li>
-                    <li>Ensuring a better user experience</li>
-                </ul>
             </div>
 
             <div class="mb-12 fade-section">
@@ -93,13 +69,6 @@
                 <h3 class="text-2xl font-bold mb-4">External Links</h3>
                 <p class="text-gray-700 mb-4">
                     Our website contains links to external sites, including our Etsy shop. We are not responsible for the privacy practices of these external websites. Please review their privacy policies when you visit them.
-                </p>
-            </div>
-
-            <div class="mb-12 fade-section">
-                <h3 class="text-2xl font-bold mb-4">Cookies</h3>
-                <p class="text-gray-700 mb-4">
-                    Our website may use cookies to enhance your browsing experience. Cookies are small files stored on your device that help us recognize you and improve site functionality. You can disable cookies through your browser settings if you prefer.
                 </p>
             </div>
 
@@ -162,6 +131,20 @@
             document.body.classList.toggle('bg-gray-900');
             document.body.classList.toggle('text-white');
         }
+        </script>
+    
+        <!-- Active nav marker script -->
+        <script>
+            (function(){
+                const links = document.querySelectorAll('nav a[href]');
+                const loc = window.location.pathname.split('/').pop() || 'index.html';
+                links.forEach(a=>{
+                    const href = (a.getAttribute('href')||'').split('#')[0];
+                    const file = href.split('/').pop();
+                    if(file === loc || (href === '' && loc === 'index.html')) a.classList.add('active-nav');
+                });
+            })();
+        </script>
     </script>
 
 </body>

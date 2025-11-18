@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>New Arrivals — A1 Fidgets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .big-new-badge {
+            display: inline-block;
+            background: #dc2626; /* red-600 */
+            color: #fff;
+            font-weight: 900;
+            font-size: 2.25rem;
+            padding: 0.25rem 0.9rem;
+            border-radius: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 8px 24px rgba(220,38,38,0.22);
+        }
+        .previous-smaller { font-size: 0.95rem; color: #4b5563; }
+        .active-nav { font-weight: 700; color: #1e40af; }
+    </style>
+    <link rel="icon" type="image/png" href="images/icon.jpg" />
+</head>
+<body class="bg-white text-gray-900 font-sans transition-colors duration-500">
+
+<header class="w-full py-4 px-6 border-b border-gray-300 flex justify-between items-center bg-white sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+        <img src="images/icon.jpg" alt="A1 Fidgets Logo" class="w-10 h-10 rounded-full">
+        <h1 class="text-2xl font-bold"><a href="index.html">A1 Fidgets</a></h1>
+    </div>
+    <nav class="flex gap-4 items-center">
+        <a href="index.html" class="text-blue-600 hover:underline font-semibold">Shop</a>
+        <a href="shop/shop.html" class="text-blue-600 hover:underline">Shop Grid</a>
+        <a href="about.html" class="text-blue-600 hover:underline">About</a>
+        <a href="#videos" class="text-blue-600 hover:underline">Videos</a>
+        <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
+        <a href="policy.html" class="text-blue-600 hover:underline">Policy</a>
+        <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy</a>
+    </nav>
+</header>
+
+<main class="py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+        <div class="mb-6">
+            <span class="big-new-badge">NEW!</span>
+        </div>
+        <h2 class="text-4xl font-bold mb-3">New Arrivals</h2>
+        <p class="previous-smaller max-w-xl mx-auto mb-8">Check out the latest additions — limited releases and updated designs. Click any item to view it on Etsy.</p>
+
+        <div class="border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition">
+            <img src="images/IMG_coming_soon.png" alt="New Fidget" class="rounded-xl mb-4 w-full" />
+            <h3 class="text-xl font-semibold">Coming Fidget Set</h3>
+            <p class="text-gray-600 text-sm mb-3">A brand new tactile fidget set — limited release.</p>
+            <div class="flex gap-2">
+                <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="w-full inline-block bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition text-center font-semibold">View on Etsy</a>
+                <a href="index.html" class="inline-block px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50">Back</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="text-center py-8 text-gray-500 border-t border-gray-300">© 2025 A1 Fidgets</footer>
+
+</body>
+</html>
+
+<script>
+    (function(){
+        const links = document.querySelectorAll('nav a[href]');
+        const loc = window.location.pathname.split('/').pop() || 'index.html';
+        links.forEach(a=>{
+            const href = (a.getAttribute('href')||'').split('#')[0];
+            const file = href.split('/').pop();
+            if(file === loc || (href === '' && loc === 'index.html')) a.classList.add('active-nav');
+        });
+    })();
+</script>

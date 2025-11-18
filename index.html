@@ -16,6 +16,23 @@
             padding-right: 8px;
             animation: typing 3s steps(11, end), blink 0.75s step-end infinite;
         }
+        /* Small red/white uppercase badge for new items */
+        .new-badge {
+            display: inline-block;
+            background: #dc2626; /* red-600 */
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            letter-spacing: 0.6px;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+
+        /* Slightly reduce size for content that should appear smaller (used on sections before the "new" content) */
+        .previous-smaller { font-size: 0.95rem; color: #4b5563; }
         @keyframes typing {
             from { width: 0; }
             to { width: 11ch; }
@@ -24,6 +41,28 @@
             from, to { border-color: transparent; }
             50% { border-color: currentColor; }
         }
+        /* Large, attention-grabbing NEW! badge for coming-soon feature */
+        .big-new-badge {
+            display: inline-block;
+            background: #dc2626; /* red-600 */
+            color: #fff;
+            font-weight: 900;
+            font-size: 2rem;
+            padding: 0.2rem 0.75rem;
+            border-radius: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 6px 18px rgba(220,38,38,0.25);
+        }
+        /* Smaller variant for less-prominent shop cards (third item) */
+        .small-card { padding: 0.75rem !important; }
+    /* Show the full image while keeping the card slightly more compact */
+    .small-card img { width: 100%; height: auto; display:block; }
+        .small-card h4 { font-size: 1rem; }
+        .small-card p { font-size: 0.8rem; }
+        .small-card button { padding: 0.45rem 0.6rem !important; font-size: 0.9rem; }
+    /* Active nav link style */
+    .active-nav { font-weight: 700; color: #1e40af; }
     </style>
     <link rel="icon" type="image/png" href="images/icon.jpg" />
     
@@ -47,6 +86,7 @@
     <!-- Nav Menu -->
     <nav class="flex gap-4 items-center">
         <a href="index.html" class="text-blue-600 hover:underline font-semibold">Shop</a>
+        <a href="shop/shop.html" class="text-blue-600 hover:underline">Shop Grid</a>
         <a href="about.html" class="text-blue-600 hover:underline">About</a>
         <a href="#videos" class="text-blue-600 hover:underline">Videos</a>
         <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
@@ -60,13 +100,13 @@
 
     <!-- Hero -->
     <section class="text-center py-28 border-b border-gray-300 bg-gray-100 transition-colors duration-500 fade-section">
-        <h2 class="text-5xl font-bold mb-4"><span class="typing-text">A1 Fidgets</span></h2>
-        <p class="text-lg text-gray-600 max-w-xl mx-auto">Hello, my name is Owen Lee and I created A1 Fidgets! (plz buy to help me get a new 3D printer🙏🙏)</p>
+        <h2 class="text-4xl font-bold mb-4"><span class="typing-text">A1 Fidgets</span></h2>
+        <p class="text-base previous-smaller max-w-xl mx-auto">Hello, my name is Owen Lee and I created A1 Fidgets! (plz buy to help me get a new 3D printer🙏🙏)</p>
     </section>
 
     <!-- Shop Section -->
     <section id="shop" class="py-20 px-6 fade-section">
-        <h3 class="text-3xl font-bold mb-12 text-center">Shop Items</h3>
+        <h3 class="text-2xl font-bold mb-12 text-center previous-smaller">Shop Items</h3>
         <div class="flex flex-col gap-12 max-w-3xl mx-auto">
 
             <div class='border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section'>
@@ -83,7 +123,7 @@
                 <button onclick="window.location.href='https://www.etsy.com/people/7ew9ux50u1vo96cl'" class='w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition'>View on Etsy</button>
             </div>
 
-            <div class='border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section'>
+            <div class='border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section small-card'>
                 <img src='images/IMG_1763-removebg-preview.png' class='rounded-xl mb-4 w-full' />
                 <h4 class='text-xl font-semibold'>Single Yellow Fidget Key</h4>
                 <p class='text-gray-600 text-sm mb-3'>Simple single‑key tactile cube. (Tan)</p>
@@ -92,9 +132,22 @@
         </div>
     </section>
 
-    <!-- Extra Scroll Space -->
+    <!-- Extra Scroll Space / Coming Soon (featured new item) -->
     <section class="h-[1400px] bg-gray-100 flex items-center justify-center text-gray-500 text-xl border-t border-gray-300 fade-section">
-        More coming soon🤫...
+        <div class="max-w-3xl mx-auto w-full px-6">
+            <div class="flex flex-col items-center gap-6">
+                <div class="text-center">
+                    <span class="big-new-badge">NEW!</span>
+                </div>
+
+                <div class="border border-gray-300 rounded-xl p-4 bg-gray-100 shadow-sm hover:shadow-lg transition w-full">
+                    <img src="images/IMG_coming_soon.png" alt="Coming Soon" class="rounded-xl mb-4 w-full" />
+                    <h4 class="text-xl font-semibold">New Coming Fidget Set</h4>
+                    <p class="text-gray-600 text-sm mb-3 previous-smaller">A brand new tactile fidget set — limited release. Same great feel, new look and functions.</p>
+                    <button onclick="window.location.href='https://www.etsy.com/people/7ew9ux50u1vo96cl'" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">View on Etsy</button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Video Section -->
@@ -190,6 +243,19 @@
 
     // Prevent right-click on videos
     document.querySelectorAll('video').forEach(v => v.addEventListener('contextmenu', e => e.preventDefault()));
+</script>
+
+<!-- Active nav marker script -->
+<script>
+    (function(){
+        const links = document.querySelectorAll('nav a[href]');
+        const loc = window.location.pathname.split('/').pop() || 'index.html';
+        links.forEach(a=>{
+            const href = (a.getAttribute('href')||'').split('#')[0];
+            const file = href.split('/').pop();
+            if(file === loc || (href === '' && loc === 'index.html')) a.classList.add('active-nav');
+        });
+    })();
 </script>
 
 </body>
