@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmed — A1 Fidgets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-section { opacity: 0; transform: translateY(20px); transition: opacity 0.9s ease, transform 0.9s ease; }
+        .fade-visible { opacity: 1; transform: translateY(0); }
+    </style>
+    <link rel="icon" type="image/png" href="images/icon.jpg" />
+</head>
+<body class="bg-white text-gray-900 font-sans transition-colors duration-500">
+
+<header class="w-full py-4 px-6 border-b border-gray-300 flex justify-between items-center bg-white sticky top-0 z-50" id="header">
+    <div class="flex items-center gap-3">
+        <img src="images/icon.jpg" alt="A1 Fidgets Logo" class="w-10 h-10 rounded-full">
+        <h1 class="text-2xl font-bold"><a href="index.html">A1 Fidgets</a></h1>
+    </div>
+</header>
+
+<main class="py-16 px-6 max-w-3xl mx-auto text-center">
+    <div id="blocked" class="fade-section">
+        <h2 class="text-3xl font-bold mb-4 text-red-600">Please pre order a item before going to this page</h2>
+        <p class="text-gray-700 mb-6">This page is reserved for customers who have completed a pre-order through our form.</p>
+        <a href="preorder.html" class="bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700 transition">Go to Pre-order Page</a>
+    </div>
+
+    <div id="content" class="hidden fade-section">
+        <h2 class="text-3xl font-bold mb-4">Thank you — Your Pre-order is received!</h2>
+        <p id="custInfo" class="text-gray-700 mb-4"></p>
+
+        <div class="border border-gray-300 rounded-xl p-6 mx-auto max-w-md bg-gray-50">
+            <img src="images/IMG_1786-removebg-preview (1).png" alt="Preorder Product" class="rounded-xl w-full mb-4" />
+            <h3 class="text-xl font-semibold mb-2">New Switch Set — Pre-order</h3>
+            <p class="text-gray-600 mb-4">We will reach out to you at the email above with payment and shipping instructions.</p>
+            <div id="orderSummary" class="text-left text-sm text-gray-700"></div>
+        </div>
+
+        <div class="mt-6 flex justify-center gap-4">
+            <a href="index.html" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Back to Shop</a>
+        </div>
+    </div>
+</main>
+
+<footer class="text-center py-8 text-gray-500 border-t border-gray-300">© 2025 A1 Fidgets</footer>
+
+<script>
+// Check localStorage for preorder marker
+function showBlocked() {
+    document.getElementById('blocked').classList.add('fade-visible');
+}
+function showContent(record) {
+    document.getElementById('blocked').classList.add('hidden');
+    const content = document.getElementById('content');
+    document.getElementById('custInfo').innerHTML = `Name: <strong>${escapeHtml(record.name)}</strong> &middot; Email: <a href="mailto:${encodeURIComponent(record.email)}" class="text-blue-600 hover:underline">${escapeHtml(record.email)}</a>`;
+    document.getElementById('orderSummary').innerHTML = `<strong>Quantity:</strong> ${escapeHtml(String(record.qty))} <br> <strong>Total:</strong> ${escapeHtml(String(record.total))} <br> <strong>Placed:</strong> ${escapeHtml(new Date(record.ts).toLocaleString())}`;
+    content.classList.remove('hidden');
+    setTimeout(()=>content.classList.add('fade-visible'), 40);
+}
+
+// small helper
+function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]; });
+}
+
+try {
+    const raw = localStorage.getItem('a1_preordered');
+    if (!raw) {
+        // Not preordered
+        showBlocked();
+    } else {
+        const record = JSON.parse(raw);
+        if (!record || !record.email) {
+            showBlocked();
+        } else {
+            showContent(record);
+        }
+    }
+} catch (e) {
+    console.error('Error reading preorder record', e);
+    showBlocked();
+}
+
+// Clear button for testing (removes localStorage record)
+document.getElementById('clear').addEventListener('click', () => {
+    if (confirm('Clear saved pre-order? This will make this page blocked again.')) {
+        localStorage.removeItem('a1_preordered');
+        location.reload();
+    }
+});
+</script>
+
+</body>
+</html>
