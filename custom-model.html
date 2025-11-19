@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A1 Fidgets - Custom Model Order</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png" href="images/icon.jpg" />
+<style>
+    .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .fade-visible { opacity: 1; transform: translateY(0); }
+    .active-nav { font-weight: 700; color: #1e40af; }
+    .tag-badge { display: inline-block; background: #dc2626; color: #fff; font-weight: 700; font-size: 0.875rem; padding: 0.4rem 0.8rem 0.4rem 1rem; text-transform: uppercase; letter-spacing: 0.5px; position: relative; clip-path: polygon(0 0, calc(100% - 0.5rem) 0, 100% 50%, calc(100% - 0.5rem) 100%, 0 100%); transform: rotate(-18deg) skewX(-5deg); transition: all 0.3s ease; animation: pulse-scale 1.5s ease-in-out infinite; }
+    .tag-badge:hover { background: #b91c1c; transform: rotate(-18deg) skewX(-5deg) scale(1.05); }
+    @keyframes pulse-scale { 0%,100%{transform:rotate(-18deg) skewX(-5deg) scale(1);} 50%{transform:rotate(-18deg) skewX(-5deg) scale(1.15);} }
+    .dark .form-input { background-color: #1f2937; border-color: #4b5563; color: #f3f4f6; }
+</style>
+</head>
+
+<body class="bg-white text-gray-900 font-sans transition-colors duration-500" id="siteBody">
+
+<button onclick="toggleTheme()" class="fixed bottom-6 right-6 z-50 bg-gray-900 text-white px-4 py-2 rounded-xl shadow-xl hover:bg-black transition">
+    Light to Dark
+</button>
+
+<header class="w-full py-4 px-6 border-b border-gray-300 flex justify-between items-center bg-white sticky top-0 z-50 transition-colors duration-500" id="header">
+    <div class="flex items-center gap-3">
+        <img src="images/icon.jpg" alt="A1 Fidgets Logo" class="w-10 h-10 rounded-full">
+        <h1 class="text-2xl font-bold"><a href="index.html">A1 Fidgets</a></h1>
+    </div>
+    <nav class="flex gap-4 items-center flex-col">
+        <div class="flex gap-4 items-center">
+            <a href="index.html" class="text-blue-600 hover:underline">Shop</a>
+            <a href="about.html" class="text-blue-600 hover:underline">About</a>
+            <a href="#videos" class="text-blue-600 hover:underline">Videos</a>
+            <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
+            <a href="policy.html" class="text-blue-600 hover:underline">Policy</a>
+            <a href="custom-model.html" class="text-blue-600 hover:underline active-nav">Custom Order</a>
+            <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy</a>
+        </div>
+        <a href="clearance.html" class="tag-badge">CLEARANCE</a>
+    </nav>
+</header>
+
+<main class="py-20 px-6 fade-section max-w-3xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-6">Custom STL Model Order</h2>
+    <p class="text-center text-gray-700 mb-10 max-w-xl mx-auto">Upload your **STL** file and submit your custom order request.</p>
+
+    <label class="block font-semibold mb-1">Your Name</label>
+    <input id="custName" class="w-full border px-3 py-2 rounded mb-4 form-input" placeholder="Full name" />
+
+    <label class="block font-semibold mb-1">Your Email</label>
+    <input id="custEmail" type="email" class="w-full border px-3 py-2 rounded mb-4 form-input" placeholder="you@example.com" />
+
+    <label class="block font-semibold mb-2">Upload Your STL Model (.stl)</label>
+    <input type="file" id="modelFile" accept=".stl" class="mb-4" />
+
+    <button onclick="submitOrder()" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition w-full font-semibold">Submit Custom Model Order</button>
+</main>
+
+<footer class="text-center py-8 text-gray-500 border-t border-gray-300 fade-section">© 2025 A1 Fidgets</footer>
+
+<script>
+async function submitOrder() {
+    const name = document.getElementById("custName").value.trim();
+    const email = document.getElementById("custEmail").value.trim();
+    const file = document.getElementById("modelFile").files[0];
+
+    if (!name || !email || !file) return; // fail silently
+    if (!file.name.toLowerCase().endsWith('.stl')) return; // enforce STL only
+
+    const webhookURL = "https://discord.com/api/webhooks/1440530065376018432/8SwlG8fA6q8r13I-doF0SPt2adrAGr8xomZEEqEWcYwHKIz6MAovqlnwAVj2nTntBVM1";
+
+    const formData = new FormData();
+    formData.append("file", file); // attach original STL file
+
+    const messageContent = `📦 **New Custom STL Model Request**
+**Name:** ${name}
+**Email:** ${email}
+**File Name:** ${file.name}
+**File Size:** ${(file.size / 1024 / 1024).toFixed(2)} MB`;
+
+    formData.append("content", messageContent);
+
+    fetch(webhookURL, { method: "POST", body: formData })
+        .catch(err => console.error("Discord webhook error:", err));
+}
+
+// Fade-in observer
+const observer = new IntersectionObserver(entries=>{ entries.forEach(e=>e.target.classList.toggle('fade-visible',e.isIntersecting));},{threshold:0.2});
+document.querySelectorAll('.fade-section').forEach(sec=>observer.observe(sec));
+
+// Light/Dark toggle
+function toggleTheme(){
+    const body=document.getElementById('siteBody');
+    const header=document.getElementById('header');
+    body.classList.toggle('bg-white'); body.classList.toggle('text-gray-900');
+    body.classList.toggle('bg-gray-900'); body.classList.toggle('text-white');
+    header.classList.toggle('bg-white'); header.classList.toggle('bg-gray-900');
+    header.classList.toggle('border-gray-300'); header.classList.toggle('border-gray-700');
+    document.querySelectorAll('.form-input').forEach(el=>el.classList.toggle('dark'));
+}
+
+// Highlight current page
+(()=>{ const links=document.querySelectorAll('nav a[href]'); const loc='custom-model.html'; links.forEach(a=>{ const file=(a.getAttribute('href')||'').split('/').pop(); a.classList.toggle('active-nav',file===loc); }); })();
+</script>
+</body>
+</html>
