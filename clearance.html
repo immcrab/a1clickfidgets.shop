@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clearance — A1 Fidgets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
+        .fade-visible { opacity: 1; transform: translateY(0); }
+        .clearance-badge {
+            display: inline-block;
+            background: #dc2626;
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.2rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            box-shadow: 0 6px 18px rgba(220,38,38,0.25);
+        }
+        .discount-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #dc2626;
+        }
+        .active-nav { font-weight: 700; color: #1e40af; }
+        .tag-badge {
+            display: inline-block;
+            background: #dc2626;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 0.4rem 0.8rem 0.4rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 0.5rem) 0, 100% 50%, calc(100% - 0.5rem) 100%, 0 100%);
+            transform: rotate(-18deg) skewX(-5deg);
+            transition: all 0.3s ease;
+        }
+        .tag-badge:hover {
+            background: #b91c1c;
+            transform: rotate(-18deg) skewX(-5deg) scale(1.05);
+        }
+        @keyframes pulse-scale {
+            0%, 100% { transform: rotate(-18deg) skewX(-5deg) scale(1); }
+            50% { transform: rotate(-18deg) skewX(-5deg) scale(1.15); }
+        }
+        .tag-badge {
+            animation: pulse-scale 1.5s ease-in-out infinite;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="images/icon.jpg" />
+</head>
+<body class="bg-white text-gray-900 font-sans transition-colors duration-500" id="siteBody">
+
+    <!-- Light/Dark Toggle -->
+    <button onclick="toggleTheme()" class="fixed bottom-6 right-6 z-50 bg-gray-900 text-white px-4 py-2 rounded-xl shadow-xl hover:bg-black transition">
+        Light to Dark
+    </button>
+
+    <!-- Header / Nav -->
+    <header class="w-full py-4 px-6 border-b border-gray-300 flex justify-between items-center bg-white sticky top-0 z-50 transition-colors duration-500" id="header">
+        <div class="flex items-center gap-3">
+            <!-- Logo -->
+            <img src="images/icon.jpg" alt="A1 Fidgets Logo" class="w-10 h-10 rounded-full">
+            <h1 class="text-2xl font-bold"><a href="index.html">A1 Fidgets</a></h1>
+        </div>
+        
+        <!-- Nav Menu -->
+        <nav class="flex gap-4 items-center flex-col">
+            <div class="flex gap-4 items-center">
+                <a href="index.html" class="text-blue-600 hover:underline">Shop</a>
+                <a href="about.html" class="text-blue-600 hover:underline">About</a>
+                <a href="index.html#videos" class="text-blue-600 hover:underline">Videos</a>
+                <a href="index.html#contact" class="text-blue-600 hover:underline">Contact</a>
+                <a href="policy.html" class="text-blue-600 hover:underline">Policy</a>
+                
+                <!-- Etsy Button -->
+                <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy</a>
+            </div>
+            <a href="clearance.html" class="tag-badge">CLEARANCE</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="text-center py-20 border-b border-gray-300 bg-gray-100 transition-colors duration-500 fade-section">
+        <div class="mb-4">
+            <span class="clearance-badge">CLEARANCE</span>
+        </div>
+        <h2 class="text-5xl font-bold mb-4">Clearance Sale</h2>
+        <p class="text-lg text-gray-600 max-w-xl mx-auto">Limited stock items up for clearance. Great deals on items we're phasing out!</p>
+    </section>
+
+    <!-- Clearance Items Section -->
+    <section id="clearance" class="py-20 px-6 fade-section">
+        <h3 class="text-3xl font-bold mb-12 text-center">Limited Clearance Item</h3>
+        <div class="max-w-2xl mx-auto">
+
+            <!-- Single Clearance Item -->
+            <div class='border border-gray-300 rounded-xl p-8 bg-gray-100 shadow-sm hover:shadow-lg transition fade-section'>
+                <div class="relative mb-6">
+                    <img src='images/clearance-placeholder.png' class='rounded-xl mb-6 w-full' alt="Clearance Item" />
+                    <div class="absolute top-2 right-2">
+                        <span class="clearance-badge">CLEARANCE</span>
+                    </div>
+                </div>
+                
+                <h4 class='text-2xl font-semibold mb-2'>Clearance Switches</h4>
+                <p class='text-gray-600 text-sm mb-6'>Available at clearance price. Perfect for those looking for a budget-friendly option!</p>
+                
+                <div class="mb-6">
+                    <span class="discount-text">$1.50</span>
+                    <span class="text-gray-500 line-through ml-2">$3.00</span>
+                    <span class="text-xs text-gray-500 ml-2">per item</span>
+                </div>
+
+                <!-- Quantity Selector -->
+                <div class="mb-6">
+                    <label for="quantity" class="block text-sm font-semibold mb-2">Quantity:</label>
+                    <div class="flex items-center gap-4">
+                        <button onclick="decreaseQuantity()" class="bg-gray-300 hover:bg-gray-400 text-gray-900 font-bold py-2 px-4 rounded transition">−</button>
+                        <input type="number" id="quantity" value="1" min="1" max="16" class="w-20 text-center border border-gray-300 rounded-lg py-2 px-3 font-semibold" readonly>
+                        <button onclick="increaseQuantity()" class="bg-gray-300 hover:bg-gray-400 text-gray-900 font-bold py-2 px-4 rounded transition">+</button>
+                    </div>
+                </div>
+
+                <!-- Total Price -->
+                <div class="mb-6 p-4 bg-white rounded-lg border border-gray-300">
+                    <p class="text-sm text-gray-600">Total Price:</p>
+                    <p class="text-2xl font-bold" id="totalPrice">$0.50</p>
+                </div>
+
+                <button onclick="window.location.href='https://www.etsy.com/people/7ew9ux50u1vo96cl'" class='w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold'>Contact for Purchase</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="py-20 px-6 fade-section border-t border-gray-300 bg-gray-100 text-center">
+        <h3 class="text-2xl font-bold mb-4">Clearance Sale Details</h3>
+        <p class="text-gray-700 max-w-2xl mx-auto">
+            These items are available for a limited time at clearance prices. Stock is limited, so don't miss out! All items are sold as-is. For more information, visit our Etsy shop or contact us directly.
+        </p>
+    </section>
+
+    <footer class="text-center py-8 text-gray-500 border-t border-gray-300 fade-section">© 2025 A1 Fidgets</footer>
+
+<script>
+    // Quantity controller
+    function increaseQuantity() {
+        const qty = document.getElementById('quantity');
+        if (parseInt(qty.value) < 16) {
+            qty.value = parseInt(qty.value) + 1;
+            updateTotal();
+        }
+    }
+
+    function decreaseQuantity() {
+        const qty = document.getElementById('quantity');
+        if (parseInt(qty.value) > 1) {
+            qty.value = parseInt(qty.value) - 1;
+            updateTotal();
+        }
+    }
+
+    function updateTotal() {
+        const qty = parseInt(document.getElementById('quantity').value);
+        const total = (qty * 1.50).toFixed(2);
+        document.getElementById('totalPrice').textContent = '$' + total;
+    }
+
+    // Fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-visible');
+                const children = entry.target.querySelectorAll('.fade-section');
+                children.forEach((child, index) => setTimeout(() => child.classList.add('fade-visible'), index * 150));
+            } else {
+                entry.target.classList.remove('fade-visible');
+                const children = entry.target.querySelectorAll('.fade-section');
+                children.forEach(child => child.classList.remove('fade-visible'));
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.fade-section').forEach(sec => observer.observe(sec));
+
+    // Light/Dark Toggle
+    function toggleTheme() {
+        const body = document.body;
+        const header = document.getElementById('header');
+        body.classList.toggle('bg-white');
+        body.classList.toggle('text-gray-900');
+        body.classList.toggle('bg-gray-900');
+        body.classList.toggle('text-white');
+        header.classList.toggle('bg-white');
+        header.classList.toggle('bg-gray-900');
+        header.classList.toggle('border-gray-300');
+        header.classList.toggle('border-gray-700');
+    }
+
+    // Active nav marker script
+    (function(){
+        const links = document.querySelectorAll('nav a[href]');
+        const loc = window.location.pathname.split('/').pop() || 'index.html';
+        links.forEach(a=>{
+            const href = (a.getAttribute('href')||'').split('#')[0];
+            const file = href.split('/').pop();
+            if(file === loc || (href === '' && loc === 'index.html')) a.classList.add('active-nav');
+        });
+    })();
+</script>
+
+</body>
+</html>

@@ -9,6 +9,31 @@
         .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
         .fade-visible { opacity: 1; transform: translateY(0); }
         .active-nav { font-weight: 700; color: #1e40af; }
+        .tag-badge {
+            display: inline-block;
+            background: #dc2626;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 0.4rem 0.8rem 0.4rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 0.5rem) 0, 100% 50%, calc(100% - 0.5rem) 100%, 0 100%);
+            transform: rotate(-18deg) skewX(-5deg);
+            transition: all 0.3s ease;
+        }
+        .tag-badge:hover {
+            background: #b91c1c;
+            transform: rotate(-18deg) skewX(-5deg) scale(1.05);
+        }
+        @keyframes pulse-scale {
+            0%, 100% { transform: rotate(-18deg) skewX(-5deg) scale(1); }
+            50% { transform: rotate(-18deg) skewX(-5deg) scale(1.15); }
+        }
+        .tag-badge {
+            animation: pulse-scale 1.5s ease-in-out infinite;
+        }
     </style>
     <link rel="icon" type="image/png" href="images/icon.jpg" />
 </head>
@@ -33,16 +58,19 @@
 
     </a>
     
-    <!-- Navigation -->
-    <nav class="flex gap-4 items-center">
-        <a href="index.html" class="text-blue-600 hover:underline">Shop</a>
-        <a href="about.html" class="text-blue-600 hover:underline font-semibold">About</a>
-        <a href="index.html#videos" class="text-blue-600 hover:underline">Videos</a>
-        <a href="#contact" class="text-blue-600 hover:underline">Contact</a>
-        <a href="policy.html" class="text-blue-600 hover:underline">Policy</a>
-        
-        <!-- Etsy Button -->
-        <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy</a>
+    <!-- Nav Menu -->
+    <nav class="flex gap-4 items-center flex-col">
+        <div class="flex gap-4 items-center">
+            <a href="index.html" class="text-blue-600 hover:underline">Shop</a>
+            <a href="about.html" class="text-blue-600 hover:underline font-semibold">About</a>
+            <a href="index.html#videos" class="text-blue-600 hover:underline">Videos</a>
+            <a href="index.html#contact" class="text-blue-600 hover:underline">Contact</a>
+            <a href="policy.html" class="text-blue-600 hover:underline">Policy</a>
+            
+            <!-- Etsy Button -->
+            <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy</a>
+        </div>
+        <a href="clearance.html" class="tag-badge">CLEARANCE</a>
     </nav>
 </header>
 
@@ -105,10 +133,16 @@
 
     // Light/Dark Toggle
     function toggleTheme() {
-        document.body.classList.toggle('bg-white');
-        document.body.classList.toggle('text-gray-900');
-        document.body.classList.toggle('bg-gray-900');
-        document.body.classList.toggle('text-white');
+        const body = document.body;
+        const header = document.getElementById('header');
+        body.classList.toggle('bg-white');
+        body.classList.toggle('text-gray-900');
+        body.classList.toggle('bg-gray-900');
+        body.classList.toggle('text-white');
+        header.classList.toggle('bg-white');
+        header.classList.toggle('bg-gray-900');
+        header.classList.toggle('border-gray-300');
+        header.classList.toggle('border-gray-700');
     }
 </script>
 
