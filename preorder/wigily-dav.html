@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pre-order — A1 Fidgets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="../images/icon.jpg" />
+    <style>
+        .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.9s ease, transform 0.9s ease; }
+        .fade-visible { opacity: 1; transform: translateY(0); }
+        .active-nav { font-weight: 700; color: #1e40af; }
+        .tag-badge { display: inline-block; background: #dc2626; color: #fff; font-weight: 700; font-size: 0.875rem;
+            padding: 0.4rem 0.8rem 0.4rem 1rem; text-transform: uppercase; letter-spacing: 0.5px; position: relative;
+            clip-path: polygon(0 0, calc(100% - 0.5rem) 0, 100% 50%, calc(100% - 0.5rem) 100%, 0 100%);
+            transform: rotate(-18deg) skewX(-5deg); transition: all 0.3s ease; animation: pulse-scale 1.5s ease-in-out infinite; }
+        .tag-badge:hover { background: #b91c1c; transform: rotate(-18deg) skewX(-5deg) scale(1.05); }
+        @keyframes pulse-scale { 0%,100% { transform: rotate(-18deg) skewX(-5deg) scale(1); } 50% { transform: rotate(-18deg) skewX(-5deg) scale(1.15); } }
+        .unit-price { font-size: 1.6rem; font-weight: 800; color: #111827; }
+        .strike { text-decoration: line-through; color: #6b7280; margin-left: 0.5rem; font-weight: 600; }
+    </style>
+    <link rel="icon" type="image/png" href="images/icon.jpg" />
+</head>
+<body class="bg-white text-gray-900 font-sans transition-colors duration-500" id="siteBody">
+
+    <!-- Dark toggle -->
+    <button onclick="toggleTheme()" class="fixed bottom-6 right-6 z-50 bg-gray-900 text-white px-4 py-2 rounded-xl shadow-xl hover:bg-black transition">Light to Dark</button>
+
+    <!-- Header / Nav -->
+    <header class="w-full py-4 px-6 border-b border-gray-300 flex justify-between items-center bg-white sticky top-0 z-50" id="header">
+        <div class="flex items-center gap-3">
+            <img src="images/icon.jpg" alt="A1 Fidgets Logo" class="w-10 h-10 rounded-full">
+            <h1 class="text-2xl font-bold"><a href="index.html">A1 Fidgets</a></h1>
+        </div>
+        <nav class="flex gap-4 items-center flex-col">
+            <div class="flex gap-4 items-center">
+                <a href="index.html" class="text-blue-600 hover:underline font-semibold">Shop</a>
+                <a href="about.html" class="text-blue-600 hover:underline">About</a>
+                <a href="index.html#videos" class="text-blue-600 hover:underline">Videos</a>
+                <a href="index.html#contact" class="text-blue-600 hover:underline">Contact</a>
+                <a href="policy.html" class="text-blue-600 hover:underline">Policy</a>
+                <a href="custom-model.html" class="text-blue-600 hover:underline active-nav">Custom Order</a>
+                <a href="/preorder/index.html" class="text-blue-600 hover:underline active-nav">Pre-Order</a>
+                <a href="https://www.etsy.com/people/7ew9ux50u1vo96cl" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Visit Etsy</a>
+            </div>
+            <a href="clearance.html" class="tag-badge">CLEARANCE</a>
+        </nav>
+    </header>
+
+    <main class="py-16 px-6 max-w-3xl mx-auto">
+        <section class="text-center mb-10 fade-section">
+            <h2 class="text-4xl font-bold mb-3">Pre-order: Wigily Dav</h2>
+            <p class="text-gray-600 mb-4">Reserve one of the first runs. Limited quantities available.</p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start fade-section">
+            <div>
+                 <img src="../images/wigily-dav.png" alt="Preorder Item" class="rounded-xl w-full mb-4" />
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold mb-2">Wigily Dav</h3>
+                <p class="text-gray-700 mb-4">A cool little wigily guy.</p>
+
+                <div class="mb-4">
+                    <span class="unit-price" id="unitPrice">$1.00</span>
+                    <span class="strike" id="origPrice">$3.00</span>
+                    <div class="text-xs text-gray-500">price per unit</div>
+                </div>
+
+                <!-- Pre-order Form -->
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold mb-2" for="custName">Your name</label>
+                    <input id="custName" class="w-full border border-gray-300 rounded-lg py-2 px-3" placeholder="Full name" />
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold mb-2" for="custEmail">Email</label>
+                    <input id="custEmail" type="email" class="w-full border border-gray-300 rounded-lg py-2 px-3" placeholder="you@example.com" />
+                </div>
+
+                <!-- Address Input -->
+                <div class="mb-4">
+                    <label for="custAddress" class="block text-sm font-semibold mb-2">Shipping Address</label>
+                    <textarea id="custAddress" class="w-full border border-gray-300 rounded-lg py-2 px-3" placeholder="123 Main St, City, State, ZIP" rows="3"></textarea>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="mb-4">
+                    <label for="paymentMethod" class="block text-sm font-semibold mb-2">Payment Method</label>
+                    <select id="paymentMethod" class="w-full border border-gray-300 rounded-lg py-2 px-3">
+                        <option value="" disabled selected>Select payment type</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Credit">Credit</option>
+                        <option value="Debit">Debit</option>
+                        <option value="Apple Pay">Apple Pay</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="quantity" class="block text-sm font-semibold mb-2">Quantity</label>
+                    <div class="flex items-center gap-3">
+                        <button onclick="decreaseQuantity()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded">−</button>
+                        <input type="number" id="quantity" value="1" min="1" max="16" class="w-20 text-center border border-gray-300 rounded-lg py-2 px-3 font-semibold" readonly />
+                        <button onclick="increaseQuantity()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded">+</button>
+                        <div class="text-sm text-gray-500">(max 5)</div>
+                    </div>
+                </div>
+
+                <div class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div class="text-sm text-gray-600">Total</div>
+                    <div class="text-2xl font-bold" id="totalPrice">$4.99</div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <button id="submitPreorder" class="bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition font-semibold">Submit Pre-order</button>
+                    <button onclick="copyOrder()" class="bg-gray-200 text-gray-800 py-3 rounded-lg hover:bg-gray-300 transition font-semibold">Copy order details</button>
+                    <a href="index.html#contact" class="inline-block text-center bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold">Contact to complete pre-order</a>
+                </div>
+
+                <p id="formMsg" class="text-xs text-red-600 mt-4 hidden"></p>
+                <p id="formHint" class="text-xs text-gray-500 mt-2">After successful submission you'll be redirected to a special page that shows your order.</p>
+                <p class="text-xs text-gray-500 mt-2">
+Your information is used only to process your pre-order. We do not share it with third parties. Payment is handled securely after contacting you. 
+</p>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-8 text-gray-500 border-t border-gray-300">© 2025 A1 Fidgets</footer>
+
+<script>
+const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1440524528047624202/pHysZsoWvmePK2rcFH5BtIwjopaR6aDJRI8cdrArgvxnm9x8iU51iHBje86YZ0Xm4Psi";
+const UNIT_PRICE = 1.00;
+const MAX_QTY = 5;
+
+function increaseQuantity() {
+    const qty = document.getElementById('quantity');
+    if (parseInt(qty.value) < MAX_QTY) { qty.value = parseInt(qty.value) + 1; updateTotal(); }
+}
+function decreaseQuantity() {
+    const qty = document.getElementById('quantity');
+    if (parseInt(qty.value) > 1) { qty.value = parseInt(qty.value) - 1; updateTotal(); }
+}
+function updateTotal() {
+    const qty = parseInt(document.getElementById('quantity').value);
+    const total = (qty * UNIT_PRICE).toFixed(2);
+    document.getElementById('totalPrice').textContent = '$' + total;
+}
+
+function copyOrder() {
+    const name = document.getElementById('custName').value || '[name]';
+    const email = document.getElementById('custEmail').value || '[email]';
+    const address = document.getElementById('custAddress').value || '[address]';
+    const payment = document.getElementById('paymentMethod').value || '[payment]';
+    const qty = document.getElementById('quantity').value;
+    const total = document.getElementById('totalPrice').textContent;
+    const shipDate = 'Estimated Dec 15, 2025';
+
+    const summary = `Pre-order request - Wiglily Dav
+Name: ${name}
+Email: ${email}
+Quantity: ${qty}
+Total: ${total}
+Address: ${address}
+Payment Method: ${payment}
+${shipDate}
+
+Please contact me with payment and shipping instructions.`;
+
+    navigator.clipboard && navigator.clipboard.writeText ?
+        navigator.clipboard.writeText(summary).then(() => alert('Order details copied to clipboard. Paste them into your contact message.'))
+        : (function(){
+            const ta = document.createElement('textarea');
+            ta.value = summary;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); alert('Order details copied to clipboard. Paste into your contact message.'); } catch(e){ alert('Copy failed - please manually copy the details displayed.'); }
+            document.body.removeChild(ta);
+        })();
+}
+
+document.getElementById('submitPreorder').addEventListener('click', async () => {
+    const name = (document.getElementById('custName').value || '').trim();
+    const email = (document.getElementById('custEmail').value || '').trim();
+    const address = (document.getElementById('custAddress').value || '').trim();
+    const payment = (document.getElementById('paymentMethod').value || '').trim();
+    const qty = parseInt(document.getElementById('quantity').value);
+    const total = document.getElementById('totalPrice').textContent;
+    const msgEl = document.getElementById('formMsg');
+    msgEl.classList.add('hidden');
+
+    if (!name) { msgEl.textContent = 'Please enter your full name.'; msgEl.classList.remove('hidden'); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msgEl.textContent = 'Please enter a valid email address.'; msgEl.classList.remove('hidden'); return; }
+    if (!address) { msgEl.textContent = 'Please enter your shipping address.'; msgEl.classList.remove('hidden'); return; }
+    if (!payment) { msgEl.textContent = 'Please select a payment method.'; msgEl.classList.remove('hidden'); return; }
+
+    const btn = document.getElementById('submitPreorder');
+    btn.disabled = true; btn.textContent = 'Submitting...';
+
+    const payload = {
+        embeds: [
+            {
+                title: "New Pre-order — A1 Fidgets",
+                description: `Pre-order for *New Switch Set*`,
+                color: 16711680,
+                fields: [
+                    { name: "Name", value: name, inline: true },
+                    { name: "Email", value: `[${email}](mailto:${email})`, inline: true },
+                    { name: "Quantity", value: String(qty), inline: true },
+                    { name: "Total", value: total, inline: true },
+                    { name: "Address", value: address, inline: false },
+                    { name: "Payment Method", value: payment, inline: true }
+                ],
+                timestamp: new Date().toISOString()
+            }
+        ]
+    };
+
+    try {
+        const res = await fetch(DISCORD_WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        if (!res.ok) { msgEl.textContent = 'Failed to send pre-order. Please try again or use the copy button.'; msgEl.classList.remove('hidden'); btn.disabled = false; btn.textContent = 'Submit Pre-order'; return; }
+
+        localStorage.setItem('a1_preordered', JSON.stringify({ name, email, address, payment, qty, total, ts: new Date().toISOString() }));
+        setTimeout(() => { window.location.href = 'oncepreorderd.html'; }, 600);
+    } catch (err) {
+        console.error(err);
+        msgEl.textContent = 'Failed to send pre-order (network error). Please try again or use the copy button.'; msgEl.classList.remove('hidden'); btn.disabled = false; btn.textContent = 'Submit Pre-order';
+    }
+});
+
+document.getElementById('unitPrice').textContent = '$' + UNIT_PRICE.toFixed(2);
+updateTotal();
+
+// Fade-in observer
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('fade-visible'); else entry.target.classList.remove('fade-visible'); });
+}, { threshold: 0.2 });
+document.querySelectorAll('.fade-section').forEach(sec => observer.observe(sec));
+
+// Light/Dark Toggle
+function toggleTheme() {
+    const body = document.body; const header = document.getElementById('header');
+    body.classList.toggle('bg-white'); body.classList.toggle('text-gray-900'); body.classList.toggle('bg-gray-900'); body.classList.toggle('text-white');
+    header.classList.toggle('bg-white'); header.classList.toggle('bg-gray-900'); header.classList.toggle('border-gray-300'); header.classList.toggle('border-gray-700');
+}
+
+// Active nav marking
+(function(){
+    const links = document.querySelectorAll('nav a[href]');
+    const loc = window.location.pathname.split('/').pop() || 'index.html';
+    links.forEach(a => { const href = (a.getAttribute('href')||'').split('#')[0]; const file = href.split('/').pop(); if(file === loc || (href === '' && loc === 'index.html')) a.classList.add('active-nav'); });
+})();
+</script>
+
+</body>
+</html>
